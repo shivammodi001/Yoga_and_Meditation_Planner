@@ -10,12 +10,14 @@ dotenv.config();
 
 
 const app = express();
-app.use(
-  cors({
-    origin: "http://localhost:5173", // frontend URL
-    credentials: true, // allow cookies and authorization headers
-  })
-);
+app.use(cors({
+  origin: [
+    "https://yoga-and-meditation-planner.onrender.com", // ✅ your frontend live URL
+    "http://localhost:5173" // ✅ for local development
+  ],
+  credentials: true, // ✅ allows cookies & authorization headers
+}))
+
 app.use(express.json());
 app.use(cookieParser());
 
