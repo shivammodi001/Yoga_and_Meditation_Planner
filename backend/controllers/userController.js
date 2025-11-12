@@ -45,12 +45,13 @@ export const loginUser = async (req, res) => {
     const token = generateToken(user._id);
 
     // SET JWT as a cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "strict",
-      secure: false, 
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+   res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,          // ✅ required for HTTPS
+  sameSite: "none",      // ✅ allows cross-site cookies
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+})
+
 
     res.json({ message: "Login successful", user });
   } catch (error) {
