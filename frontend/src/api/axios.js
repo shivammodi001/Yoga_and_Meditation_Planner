@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://yoga-and-meditation-planner-backend.onrender.com/api',
   withCredentials: true,
 })
 
-// Add token to requests
+// Add token to every request
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
@@ -14,9 +14,7 @@ API.interceptors.request.use(
     }
     return config
   },
-  (error) => {
-    return Promise.reject(error)
-  }
+  (error) => Promise.reject(error)
 )
 
 export default API
